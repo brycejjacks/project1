@@ -73,42 +73,8 @@ function TaskPicker() {
     <>
     <ThemeProvider theme={darkTheme}>
       <h1>Task Picker</h1>
-      <div className='card'>
-        <button onClick={handleOpen}>
-          View Message
-        </button>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <h2>Hello again John Doe :)</h2>
-          </Box>
-        </Modal>
-      </div>
-      <form className='card' id='taskWeightForm' onSubmit={handleSubmit}>
-        <input type='text' placeholder='Insert task' onChange={(e) => setInputTask(e.target.value)}/>
-        <input type='number' min={1} max={10} onChange={(e) => setInputWeight(e.target.valueAsNumber)}></input>
-        <button type='submit'>Add Task</button>
-      </form>
 
-      <div style={{border: 'thin solid grey', margin: '15px', padding: '10px'}}>
-        {tasks.length == 0 && <h4 style={{margin: '30px'}}>Add a task to populate list</h4>}
-        <ul>
-          {tasks.map((task, index) => (
-            <li key={index}>
-              <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '4px'}}>
-                <p>{task.text}</p>
-                <button onClick={() => removeTask(index)}><DeleteForeverIcon /></button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div style={{display: 'flex'}}>
+      <div>
         <button onClick={handleOpen} style={{backgroundColor: '#f57f17'}}>Recommend a Task</button>
         <Modal
           open={open}
@@ -123,6 +89,27 @@ function TaskPicker() {
           </Box>
         </Modal>
       </div>
+
+      <div style={{border: 'thin solid grey', margin: '15px', padding: '10px'}}>
+        {tasks.length == 0 && <h4 style={{margin: '30px'}}>Add a task to populate list</h4>}
+        <ul>
+          {tasks.map((task, index) => (
+            <li key={index}>
+              < div style={{display: 'grid', gridTemplateColumns: '3fr 1fr 1fr', marginBottom: '4px'}}>
+                <p>{task.text}</p>
+                <p>{task.weight}</p>
+                <button onClick={() => removeTask(index)}><DeleteForeverIcon /></button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <form className='card' id='taskWeightForm' onSubmit={handleSubmit}>
+        <input type='text' placeholder='Insert task' onChange={(e) => setInputTask(e.target.value)} style={{fontSize: '17px'}}/>
+        <input type='number' min={1} max={10} onChange={(e) => setInputWeight(e.target.valueAsNumber)} style={{fontSize: '17px'}}></input>
+        <button type='submit'>Add Task</button>
+      </form>
       </ThemeProvider>
     </>
   )
