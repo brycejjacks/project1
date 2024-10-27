@@ -1,9 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import Home from "./views/Home"
-import TaskPicker from "./views/TaskPicker"
+import Home from "./pages/Home"
+import TaskPicker from "./pages/TaskPicker"
 
 function App() {
-
   return (
     <>
     <Routes>
